@@ -4,7 +4,9 @@
     <string name="hello_world">remodelmate</string>
     <string name="Login_button">Login</string>
     <string name="action_settings">Settings</string>
+    <string name="contractor_text">Contractor Name</string>
 
+    <color name="orange">#ffab91</color>
     <string name="welcome_text">Welcome to remodelmate!
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
 

@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 public class Landing extends Activity implements OnClickListener {
 
     @Override
@@ -20,6 +23,15 @@ public class Landing extends Activity implements OnClickListener {
 
         View LoginButton = findViewById(R.id.login_button);
         LoginButton.setOnClickListener(this);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "0aPN93EAFKwJGX9uAeQRD4edwfuA4ml7LIhgLFuV", "yn2tKwCYp1nitqnqndWz3J8tafANcf9C0DAYUTZp");
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
     }
 
 
@@ -55,5 +67,12 @@ public class Landing extends Activity implements OnClickListener {
             Intent i = new Intent(this, Login.class);
             startActivity(i);
         }
+
+        /*else if(v.getId() == R.id.done_button)
+        {
+            Intent i = new Intent(this, CtoFActivity.class);
+            startActivity(i);
+            //startActivity(new Intent(this, About.class));
+        }*/
     }
 }
