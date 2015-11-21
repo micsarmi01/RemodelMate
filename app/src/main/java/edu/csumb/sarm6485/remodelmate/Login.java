@@ -38,7 +38,7 @@ public class Login extends Activity implements OnClickListener {
         LoginButton.setOnClickListener(this);
 
         VideoView videoView = (VideoView) findViewById(R.id.videoView);
-        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.movie);
         videoView.start();
 
     }
