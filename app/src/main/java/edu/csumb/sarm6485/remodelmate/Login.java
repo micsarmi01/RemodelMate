@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -25,6 +26,9 @@ import java.util.List;
 
 public class Login extends Activity implements OnClickListener {
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,10 @@ public class Login extends Activity implements OnClickListener {
 
         View LoginButton = findViewById(R.id.login_button);
         LoginButton.setOnClickListener(this);
+
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
 
     }
 
@@ -63,29 +71,6 @@ public class Login extends Activity implements OnClickListener {
 
         if(v.getId() == R.id.login_button)
         {
-            EditText cinput;
-            String input;
-            TextView result;
-            List<ParseObject> ob;
-
-            cinput = (EditText)findViewById(R.id.username_field);
-            input = cinput.getText().toString();
-
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-            query.whereEqualTo("username", input);
-
-
-            try {
-                ob = query.find();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-
-
-            result = (TextView)findViewById(R.id.result_textview);
-
-
 
             Intent i = new Intent(this, HomeOwner.class);
             startActivity(i);
@@ -99,4 +84,3 @@ public class Login extends Activity implements OnClickListener {
         }*/
     }
 }
-

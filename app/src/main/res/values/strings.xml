@@ -27,4 +27,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <string name="profile_title_logged_out">You must be logged in to view your profile</string>
     <string name="profile_login_button_label">Log in</string>
 
+
+    <string name="Logo_PNG">Logo</string>
+    <color name="shadowy">#233151</color>
+    <color name="transparent">#80000000</color>
 </resources>

@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 
 public class HomeOwner extends Activity implements OnClickListener {
 
@@ -23,6 +26,9 @@ public class HomeOwner extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homeowner);
 
+
+        View SearchButton = findViewById(R.id.search_button);
+        SearchButton.setOnClickListener(this);
     }
 
 
@@ -51,11 +57,11 @@ public class HomeOwner extends Activity implements OnClickListener {
     public void onClick(View v) {
 
 
-        if(v.getId() == R.id.login_button)
+        if(v.getId() == R.id.search_button)
         {
 
 
-            Intent i = new Intent(this, HomeOwner.class);
+            Intent i = new Intent(this, SearchResults.class);
             startActivity(i);
         }
 
