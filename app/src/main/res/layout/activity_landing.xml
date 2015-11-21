@@ -4,10 +4,15 @@
     android:orientation="vertical"
     android:padding="30dip">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20.5sp" />
+        android:src="@drawable/logo"
+        android:contentDescription="logo"
+        />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,11 +22,12 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/login_button"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
             android:text="Login" />
+
     </LinearLayout>
 </LinearLayout>

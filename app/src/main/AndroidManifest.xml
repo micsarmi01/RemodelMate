@@ -17,6 +17,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+        android:name=".Login"
+        android:label="@string/app_name" >"
+        <intent-filter>
+            <action android:name="edu.csumb.sarm6485.remodelmate.Login" />
+            <category
+                android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
+
+        <activity
+            android:name=".HomeOwner"
+            android:label="@string/app_name" >"
+            <intent-filter>
+                <action android:name="edu.csumb.sarm6485.remodelmate.HomeOwner" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

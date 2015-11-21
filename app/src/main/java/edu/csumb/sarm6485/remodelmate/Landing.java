@@ -4,13 +4,22 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.content.Intent;
 
-public class Landing extends Activity {
+public class Landing extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+        // Set up a click listener for the Calculate button.
+
+        View LoginButton = findViewById(R.id.login_button);
+        LoginButton.setOnClickListener(this);
     }
 
 
@@ -36,4 +45,15 @@ public class Landing extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onClick(View v) {
+
+
+        if(v.getId() == R.id.login_button)
+        {
+
+
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+        }
+    }
 }
