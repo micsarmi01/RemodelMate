@@ -13,6 +13,12 @@
         />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/result_textview" />
+
     <EditText
         android:id="@+id/username_field"
         android:layout_width="300dp"

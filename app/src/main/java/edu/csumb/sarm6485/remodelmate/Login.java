@@ -4,6 +4,7 @@ package edu.csumb.sarm6485.remodelmate;
  * Created by michaelsarmiento on 11/20/15.
  */
 
+import android.util.Log;
 import android.view.View.OnClickListener;
 
 import android.app.Activity;
@@ -14,6 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 
 public class Login extends Activity implements OnClickListener {
@@ -56,6 +63,28 @@ public class Login extends Activity implements OnClickListener {
 
         if(v.getId() == R.id.login_button)
         {
+            EditText cinput;
+            String input;
+            TextView result;
+            List<ParseObject> ob;
+
+            cinput = (EditText)findViewById(R.id.username_field);
+            input = cinput.getText().toString();
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+            query.whereEqualTo("username", input);
+
+
+            try {
+                ob = query.find();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+
+            result = (TextView)findViewById(R.id.result_textview);
+
 
 
             Intent i = new Intent(this, HomeOwner.class);
