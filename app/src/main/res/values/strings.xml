@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">RemodelMate</string>
+    <string name="app_name">remodelmate</string>
 
-    <string name="hello_world">RemodelMate</string>
+    <string name="hello_world">remodelmate</string>
+    <string name="Login_button">Login</string>
     <string name="action_settings">Settings</string>
 </resources>
