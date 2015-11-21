@@ -61,22 +61,29 @@ public class SearchResults extends Activity implements OnClickListener {
             }
         });
 
-        /*ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Contractor");
+        ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Contractor");
         query2.whereEqualTo("Location", "San Francisco");
         query2.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
                 if (e == null) {
-                    result = (TextView)findViewById(R.id.result_textview);
+                    result = (TextView)findViewById(R.id.result1_textview);
 
                     int name = object.size();
-                    result.setText(name);
+                    result.setText(Integer.toString(name));
+                    for(int i = 0; i < object.size() ; i++){
+
+                       String name2 = object.get(i).getString("name");
+                        String location2 = object.get(i).getString("Location");
+                        String contactName2  = object.get(i).getString("contactName");
+                        result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");
+                    }
                 }
                 else {
 
                 }
             }
-        });*/
+        });
 
     }
 
