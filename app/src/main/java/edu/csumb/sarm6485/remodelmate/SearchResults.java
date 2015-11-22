@@ -33,10 +33,15 @@ import java.util.List;
 public class SearchResults extends Activity implements OnClickListener {
     static ArrayList<ParseObject> objects = new  ArrayList<ParseObject>();
     ParseObject sourceObject;
+    int warrantyType = 2;
+    double sqFeetInput = 20;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchresults);
+
+
 
 
         // Enable Local Datastore.
@@ -78,7 +83,7 @@ public class SearchResults extends Activity implements OnClickListener {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
                 LinearLayout mainLinear;
-
+                System.out.println("You are inside 1");
                 if (e == null) {
                     /*result = (TextView)findViewById(R.id.result1_textview);
 
@@ -91,6 +96,46 @@ public class SearchResults extends Activity implements OnClickListener {
                         //Testing
                         String name2 = object.get(i).getString("name");
                         String city = object.get(i).getString("city");
+                        Double warranty1 = object.get(i).getDouble("warranty1");
+                        System.out.println("Warranty1: "+ warranty1);
+                        Double warranty2 = object.get(i).getDouble("warranty1");
+                        Double warranty3 = object.get(i).getDouble("warranty1");
+
+                        Double laborPer1 = object.get(i).getDouble("laborPer1");
+                        System.out.println("Labor1: " + laborPer1);
+                        Double laborPer2 = object.get(i).getDouble("laborPer1");
+                        Double laborPer3 = object.get(i).getDouble("laborPer1");
+
+                        Double roofingMaterialsPer = object.get(i).getDouble("roofingMaterialsPer");
+
+                        Double warrantyCost = 0.0;
+                        if(warrantyType==0){
+                            warrantyCost = 0.0;
+                        }
+                        else if(warrantyType==1){
+                            warrantyCost += warranty1;
+                        }
+                        else if(warrantyType==2){
+                            warrantyCost += warranty2;
+                        }
+
+                        else if(warrantyType==3){
+                            warrantyCost += warranty3;
+                        }
+
+                        Double laborCost=0.0;
+
+                        if(sqFeetInput<20){
+                            laborCost += laborPer1;
+                        }
+                        else if(sqFeetInput<50 && sqFeetInput>20){
+                            laborCost += laborPer2;
+                        }
+
+                        else if(sqFeetInput>50){
+                            laborCost += laborPer3;
+                        }
+
                         /*String location2 = object.get(i).getString("Location");
                         String contactName2  = object.get(i).getString("contactName");
                         result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");*/
@@ -98,14 +143,24 @@ public class SearchResults extends Activity implements OnClickListener {
                         //objects.add(sourceObject);
                         mainLinear = (LinearLayout)findViewById(R.id.searchResultsLayout);
 
+                        Double totalCostFinal = simpleAlgo(sqFeetInput, warrantyCost, roofingMaterialsPer , laborCost);
+
+                        System.out.println("Inside the first loop totalCost: " + totalCostFinal + "For person " + (i+1));
+
                         LinearLayout newLinear = new LinearLayout(getApplicationContext());
+
                         TextView textViewNewB = new TextView(getApplicationContext());
                         TextView textViewNewCity = new TextView(getApplicationContext());
+                        TextView textVeiwNewPrice = new TextView(getApplicationContext());
+
                         textViewNewB.setText(name2);
                         textViewNewCity.setText("\n\nCity: " + city);
+                        textVeiwNewPrice.setText(Double.toString(totalCostFinal));
                         textViewNewB.setTextColor(Color.parseColor("#233151"));
                         textViewNewB.setTextSize(20);
                         textViewNewCity.setTextColor(Color.parseColor("#F7A656"));
+                        textViewNewCity.setTextColor(Color.BLACK);
+                        textViewNewCity.setTextSize(20);
                         textViewNewCity.setTextSize(14);
                         textViewNewCity.setGravity(Gravity.RIGHT);
 
@@ -115,6 +170,7 @@ public class SearchResults extends Activity implements OnClickListener {
                         //thisView.setBackgroundColor(Color.WHITE);
                         newLinear.addView(textViewNewB);
                         newLinear.addView(textViewNewCity);
+                        newLinear.addView(textVeiwNewPrice);
                         newLinear.setBackgroundColor(Color.WHITE);
 
 
@@ -124,8 +180,6 @@ public class SearchResults extends Activity implements OnClickListener {
 
                         layoutParams.setMargins(40, 30, 30, 40);
                         mainLinear.addView(newLinear, layoutParams);
-
-
 
                     }
                 }
@@ -205,5 +259,22 @@ public class SearchResults extends Activity implements OnClickListener {
             startActivity(i);
             //startActivity(new Intent(this, About.class));
         }*/
+    }
+
+    public double simpleAlgo(double sqFeet, double warrantyCost, double materialCost, double laborCost){
+
+        double totalCost = 0;
+        //take square feet and multiply by materialCost
+        double totalMatCost = sqFeet * materialCost;
+
+        //add warranty cost
+
+
+        //sum
+        totalCost = totalMatCost + warrantyCost + laborCost;
+        System.out.println("You are inside 2");
+        System.out.println(sqFeet + " warranty: " + warrantyCost  + " materials: " + materialCost + "labor: " +laborCost);
+        System.out.println("Total cost = " + totalCost);
+        return totalCost;
     }
 }

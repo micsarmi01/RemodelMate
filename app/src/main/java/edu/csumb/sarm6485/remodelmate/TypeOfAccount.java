@@ -82,4 +82,6 @@ public class TypeOfAccount extends Activity implements OnClickListener {
             //startActivity(new Intent(this, About.class));
         }*/
     }
+
+
 }
