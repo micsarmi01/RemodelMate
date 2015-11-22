@@ -15,33 +15,26 @@ import android.widget.VideoView;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
-public class Landing extends Activity implements OnClickListener {
+public class TypeOfAccount extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.type_of_account);
         // Set up a click listener for the Calculate button.
 
-        View LoginButton = findViewById(R.id.login_button);
-        LoginButton.setOnClickListener(this);
+        View homeOwner = findViewById(R.id.is_a_homeowner);
+        homeOwner.setOnClickListener(this);
 
-        VideoView videoView = (VideoView) findViewById(R.id.videoView);
-        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
-        videoView.start();
+        View contractor = findViewById(R.id.is_a_contractor);
+        contractor.setOnClickListener(this);
 
         /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "barf");
         testObject.saveInBackground();*/
-        videoView.setOnPreparedListener (new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
 
-        View SignUpButton = findViewById(R.id.signup_button);
-        SignUpButton.setOnClickListener(this);
+
+
     }
 
 
@@ -70,16 +63,16 @@ public class Landing extends Activity implements OnClickListener {
     public void onClick(View v) {
 
 
-        if(v.getId() == R.id.login_button)
+        if(v.getId() == R.id.is_a_homeowner)
         {
 
-            Intent i = new Intent(this, Login.class);
+            Intent i = new Intent(this, HomeOwnerSignup.class);
             startActivity(i);
         }
-        else if(v.getId() == R.id.signup_button)
+        else if(v.getId() == R.id.is_a_contractor)
         {
 
-            Intent i = new Intent(this, TypeOfAccount.class);
+            Intent i = new Intent(this, ContractorSignup.class);
             startActivity(i);
         }
         /*else if(v.getId() == R.id.done_button)

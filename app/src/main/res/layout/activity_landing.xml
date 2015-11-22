@@ -51,7 +51,7 @@
             android:layout_marginLeft="0dp" />
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/signup_button"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

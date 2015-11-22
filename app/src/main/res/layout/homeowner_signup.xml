@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shadowy"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:contentDescription="logo"
+        />
+
+
+    <EditText
+        android:id="@+id/customer_name"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp"
+        android:paddingLeft="20dp"
+        android:hint="your full name"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:lines="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/email2"
+
+        />
+
+
+    <EditText
+        android:id="@+id/customer_email"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:hint="email"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:lines="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/email2"
+
+        />
+
+    <EditText
+        android:id="@+id/customer_password"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:hint="password"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:lines="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/email2"
+
+        />
+
+
+
+    <Button
+        android:id="@+id/customer_submit"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/signmeup"
+        />
+
+</LinearLayout>

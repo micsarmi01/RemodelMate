@@ -1,0 +1,36 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shadowy"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:contentDescription="logo"
+        />
+
+    <Button
+        android:id="@+id/is_a_homeowner"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
+        android:layout_gravity="center"
+        android:background="@drawable/homeowner"
+        android:contentDescription="logo"
+        />
+
+    <Button
+        android:id="@+id/is_a_contractor"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/contractor"
+        android:contentDescription="logo"
+        />
+
+    </LinearLayout>
