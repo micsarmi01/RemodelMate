@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -23,11 +24,13 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class SearchResults extends Activity implements OnClickListener {
-
+    static ArrayList<ParseObject> objects = new  ArrayList<ParseObject>();
+    ParseObject sourceObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,24 +48,30 @@ public class SearchResults extends Activity implements OnClickListener {
 
 
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Contractor");
+        /*ParseQuery<ParseObject> query = ParseQuery.getQuery("Contractor");
         query.getInBackground("2ttvvCKy56", new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 TextView result;
                 if (e == null) {
+                    ArrayList<ParseObject> objectTemp = new ArrayList<ParseObject>();
                     result = (TextView)findViewById(R.id.result_textview);
 
                     String name = object.getString("name");
                     String contactName = object.getString("contactName");
-                    result.setText(name + contactName);
+
+
+                    objectTemp.add(object);
+                    result.setText(name + contactName + Integer.toString(objectTemp.size()+5));
+
                     } else {
                     // something went wrong
                 }
             }
-        });
+        });*/
+
 
         ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Contractor");
-        query2.whereEqualTo("Location", "San Francisco");
+        query2.whereEqualTo("state", "MD");
         query2.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
@@ -71,12 +80,18 @@ public class SearchResults extends Activity implements OnClickListener {
 
                     int name = object.size();
                     result.setText(Integer.toString(name));
-                    for(int i = 0; i < object.size() ; i++){
 
-                       String name2 = object.get(i).getString("name");
+
+                    for(int i = 0; i < object.size() ; i++){
+                        sourceObject = object.get(i);
+
+                        objects.add(sourceObject);
+
+                        String name2 = object.get(i).getString("name");
                         String location2 = object.get(i).getString("Location");
                         String contactName2  = object.get(i).getString("contactName");
                         result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");
+
                     }
                 }
                 else {
@@ -84,11 +99,40 @@ public class SearchResults extends Activity implements OnClickListener {
                 }
             }
         });
+        //Create
+        LinearLayout llPrincipal = (LinearLayout)findViewById(R.id.searchResultsLayout);
+        TextView textViewNew = new TextView(this);
+
+        LinearLayout A = new LinearLayout(this);
+        A.setOrientation(LinearLayout.VERTICAL);
+
+
+        TextView textViewNewA = new TextView(this);
+        textViewNewA.setText("Hi");
+
+        A.addView(textViewNewA);
+
+        llPrincipal.addView(A);
+
+        for(int i=0; i<objects.size();i++){
+            LinearLayout B = new LinearLayout(this);
+            B.setOrientation(LinearLayout.VERTICAL);
+
+
+            TextView textViewNewB = new TextView(this);
+            textViewNewB.setText(objects.get(i).getString("contactName"));
+
+            B.addView(textViewNewB);
+
+            llPrincipal .addView(B);
+        }
 
     }
 
 
+    public void addToArrayList(ArrayList<ParseObject> objects){
 
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

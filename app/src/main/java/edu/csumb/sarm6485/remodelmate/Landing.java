@@ -1,6 +1,7 @@
 package edu.csumb.sarm6485.remodelmate;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.VideoView;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -24,10 +26,19 @@ public class Landing extends Activity implements OnClickListener {
         View LoginButton = findViewById(R.id.login_button);
         LoginButton.setOnClickListener(this);
 
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
 
         /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "barf");
         testObject.saveInBackground();*/
+        videoView.setOnPreparedListener (new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
 
 
     }
