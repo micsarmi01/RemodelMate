@@ -29,7 +29,7 @@ import com.parse.ParseQuery;
 import java.util.List;
 
 
-public class Login extends Activity implements OnClickListener {
+public class errorLogin extends Activity implements OnClickListener {
 
     String input;
     String input2;
@@ -38,7 +38,7 @@ public class Login extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.errorlogin);
 
         View LoginButton = findViewById(R.id.login_button);
         LoginButton.setOnClickListener(this);
