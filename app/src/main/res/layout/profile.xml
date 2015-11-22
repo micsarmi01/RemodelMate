@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shadowy"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="logo"
+        />
+
+    <TextView
+        android:id="@+id/contractor_name"
+        android:layout_width="350dp"
+        android:text="Handy Man on Call"
+        android:textColor="@color/orange"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:background="@color/white"
+        />
+    <TextView
+        android:id="@+id/contractor_contact"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="6481 Real St Reigerstown MD 33445 \nphone: (334) 555-4867"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/shadowy"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingLeft="20dp"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:id="@+id/materials"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/shadowy"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:paddingLeft="20dp"
+        android:text="materials cost: $100"
+        />
+    <TextView
+        android:id="@+id/labor"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/shadowy"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:paddingLeft="20dp"
+        android:text="labor cost: $900"
+        />
+
+    <TextView
+        android:id="@+id/warranty"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/shadowy"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:paddingLeft="20dp"
+        android:text="warranty cost: $0"
+        />
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/shadowy"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        android:text="total cost: $100"
+        />
+
+
+
+    <Button
+        android:id="@+id/getvoucher"
+        android:layout_width="350dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:background="@drawable/getvoucher"
+        />
+
+
+
+</LinearLayout>

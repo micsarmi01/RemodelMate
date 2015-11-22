@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shadowy"
+    >
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:contentDescription="logo"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:src="@drawable/project"
+        />
+
+    <Spinner
+        android:id="@+id/project_type"
+        android:layout_marginTop="10dp"
+        android:layout_height="48dp"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+
+        />
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:src="@drawable/warranty"
+        />
+
+    <Spinner
+        android:id="@+id/warranty"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        />
+
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:src="@drawable/feet"
+        />
+    <EditText
+        android:id="@+id/feet"
+        android:layout_marginTop="10dp"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:id="@+id/submit_search"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/submit"
+        />
+
+
+
+</LinearLayout>

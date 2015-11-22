@@ -30,11 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.NumberFormat;
 
-public class SearchResults extends Activity implements OnClickListener {
+public class SearchResultsBroad extends Activity implements OnClickListener {
     static ArrayList<ParseObject> objects = new  ArrayList<ParseObject>();
     ParseObject sourceObject;
-    int warrantyType = 2;
-    double sqFeetInput = 20;
+    int warrantyType = 0;
+    double sqFeetInput = 0;
 
 
 
@@ -47,6 +47,13 @@ public class SearchResults extends Activity implements OnClickListener {
 
         View LoginButton = findViewById(R.id.pricing);
         LoginButton.setOnClickListener(this);
+        String SearchTerm1 = null;
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+
+            SearchTerm1 = extras.getString("result");
+
+        }
 
 
 
@@ -73,7 +80,7 @@ public class SearchResults extends Activity implements OnClickListener {
 
 
         ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Contractor");
-        query2.whereEqualTo("productTags", "roofing");
+        query2.whereEqualTo("productTags", SearchTerm1);
         query2.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
@@ -262,7 +269,7 @@ public class SearchResults extends Activity implements OnClickListener {
     public void onClick(View v) {
 
 
-       if(v.getId() == R.id.pricing)
+        if(v.getId() == R.id.pricing)
         {
             Intent i = new Intent(this, Profile.class);
             startActivity(i);
@@ -295,14 +302,3 @@ public class SearchResults extends Activity implements OnClickListener {
     }
 }
 
-class ExternalOnClickListener implements View.OnClickListener {
-
-    public ExternalOnClickListener() {
-        // keep references for your onClick logic
-    }
-
-    @Override public void onClick(View v) {
-        // TODO: add code here
-    }
-
-}

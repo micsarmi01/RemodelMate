@@ -30,5 +30,20 @@
     <string name="Logo_PNG">Logo</string>
 
     <color name="shadowy">#233151</color>
+    <color name="orange">#f7a656</color>
     <color name="transparent">#80000000</color>
+
+    <string-array name="project">
+        <item>roof</item>
+        <item>windows</item>
+        <item>aluminum</item>
+    </string-array>
+
+    <string-array name="warranty">
+        <item>no warranty</item>
+        <item>10 year warranty</item>
+        <item>20 year warranty</item>
+        <item>50 year warranty</item>
+    </string-array>
+
 </resources>

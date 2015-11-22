@@ -29,6 +29,10 @@ public class HomeOwner extends Activity implements OnClickListener {
 
         View SearchButton = findViewById(R.id.search_button);
         SearchButton.setOnClickListener(this);
+
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "0aPN93EAFKwJGX9uAeQRD4edwfuA4ml7LIhgLFuV", "yn2tKwCYp1nitqnqndWz3J8tafANcf9C0DAYUTZp");
     }
 
 
@@ -55,14 +59,32 @@ public class HomeOwner extends Activity implements OnClickListener {
     }
 
     public void onClick(View v) {
-
+        EditText cinput1;
+        EditText cinput2;
+        String input;
+        String input2;
+        TextView result;
 
         if(v.getId() == R.id.search_button)
         {
 
+            cinput1 = (EditText)findViewById(R.id.what_field);
+            input = cinput1.getText().toString();
 
-            Intent i = new Intent(this, SearchResults.class);
+            cinput2 = (EditText)findViewById(R.id.where_field);
+            input2 = cinput2.getText().toString();
+            //result = (TextView)findViewById(R.id.result_textview);
+            //result.setText(Double.toString(fout));
+
+            Intent i = new Intent(this, SearchResultsBroad.class);
+            Bundle extraInfo = new Bundle();
+            extraInfo.putString("result", input);
+            i.putExtras(extraInfo);
+
+
             startActivity(i);
+
+
         }
 
         /*else if(v.getId() == R.id.done_button)
