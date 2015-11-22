@@ -48,10 +48,15 @@ public class SearchResultsBroad extends Activity implements OnClickListener {
         View LoginButton = findViewById(R.id.pricing);
         LoginButton.setOnClickListener(this);
         String SearchTerm1 = null;
+        String SearchTerm2 = null;
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
 
-            SearchTerm1 = extras.getString("result");
+
+            SearchTerm1 = extras.getString("result").toLowerCase();
+
+            SearchTerm2 = extras.getString("result2").toLowerCase();
+
 
         }
 
@@ -80,7 +85,9 @@ public class SearchResultsBroad extends Activity implements OnClickListener {
 
 
         ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Contractor");
-        query2.whereEqualTo("productTags", SearchTerm1);
+        if(!(SearchTerm1.isEmpty())){query2.whereEqualTo("productTags", SearchTerm1);}
+        if(!(SearchTerm2.isEmpty())){query2.whereEqualTo("citySearch", SearchTerm2);}
+
         query2.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
@@ -130,7 +137,7 @@ public class SearchResultsBroad extends Activity implements OnClickListener {
 
 
                         Double laborCost = 0.0;
-                        if(sqFeetInput<=20){
+                        if(sqFeetInput<=20 && sqFeetInput>0){
                             laborCost = laborPer1;
                         }
                         else if(sqFeetInput<50 && sqFeetInput>20){
@@ -210,7 +217,7 @@ public class SearchResultsBroad extends Activity implements OnClickListener {
                         mainLinear.addView(newLinear1, layoutParams1);
 
                         View LoginButton = findViewById(R.id.type);
-                        LoginButton.setOnClickListener(new ExternalOnClickListener());
+                        //LoginButton.setOnClickListener(new ExternalOnClickListener());
                     }
                 }
                 else {

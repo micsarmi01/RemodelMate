@@ -31,15 +31,16 @@
 
     <color name="shadowy">#233151</color>
     <color name="orange">#f7a656</color>
-    <color name="transparent">#80000000</color>
+    <color name="transparent">#ff000000</color>
 
     <string-array name="project">
         <item>roof</item>
         <item>windows</item>
-        <item>aluminum</item>
+        <item>siding</item>
+        <item>doors</item>
     </string-array>
 
-    <string-array name="warranty">
+    <string-array name="warranty_array">
         <item>no warranty</item>
         <item>10 year warranty</item>
         <item>20 year warranty</item>

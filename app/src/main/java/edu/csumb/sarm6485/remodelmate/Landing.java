@@ -22,6 +22,9 @@ public class Landing extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
         // Set up a click listener for the Calculate button.
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "0aPN93EAFKwJGX9uAeQRD4edwfuA4ml7LIhgLFuV", "yn2tKwCYp1nitqnqndWz3J8tafANcf9C0DAYUTZp");
 
         View LoginButton = findViewById(R.id.login_button);
         LoginButton.setOnClickListener(this);

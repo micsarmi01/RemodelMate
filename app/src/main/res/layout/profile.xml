@@ -96,7 +96,7 @@
         android:paddingTop="20dp"
         android:paddingLeft="20dp"
         android:paddingBottom="20dp"
-        android:text="total cost: $100"
+        android:text="total cost: $1000"
         />
 
 

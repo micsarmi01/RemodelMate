@@ -34,9 +34,9 @@ public class SearchResults extends Activity implements OnClickListener {
     static ArrayList<ParseObject> objects = new  ArrayList<ParseObject>();
     ParseObject sourceObject;
     int warrantyType = 2;
-    double sqFeetInput = 20;
 
 
+    double sqFeetInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,17 @@ public class SearchResults extends Activity implements OnClickListener {
         LoginButton.setOnClickListener(this);
 
 
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+
+
+            sqFeetInput = extras.getDouble("feet");
+
+
+
+
+        }
 
         /*ParseQuery<ParseObject> query = ParseQuery.getQuery("Contractor");
         query.getInBackground("2ttvvCKy56", new GetCallback<ParseObject>() {
@@ -203,7 +214,7 @@ public class SearchResults extends Activity implements OnClickListener {
                         mainLinear.addView(newLinear1, layoutParams1);
 
                         View LoginButton = findViewById(R.id.type);
-                        LoginButton.setOnClickListener(new ExternalOnClickListener());
+                        //LoginButton.setOnClickListener(new ExternalOnClickListener());
                     }
                 }
                 else {
@@ -295,14 +306,3 @@ public class SearchResults extends Activity implements OnClickListener {
     }
 }
 
-class ExternalOnClickListener implements View.OnClickListener {
-
-    public ExternalOnClickListener() {
-        // keep references for your onClick logic
-    }
-
-    @Override public void onClick(View v) {
-        // TODO: add code here
-    }
-
-}

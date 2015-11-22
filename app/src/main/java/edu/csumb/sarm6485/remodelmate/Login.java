@@ -14,9 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -26,9 +29,8 @@ import java.util.List;
 
 public class Login extends Activity implements OnClickListener {
 
-
-
-
+    EditText cinput1;
+    EditText cinput2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,19 +70,57 @@ public class Login extends Activity implements OnClickListener {
 
     public void onClick(View v) {
 
+        String input;
+        String input2;
 
-        if(v.getId() == R.id.login_button)
-        {
+        if (v.getId() == R.id.login_button) {
 
-            Intent i = new Intent(this, HomeOwner.class);
-            startActivity(i);
-        }
 
+            cinput1 = (EditText) findViewById(R.id.username_field);
+            input = cinput1.getText().toString();
+            cinput2 = (EditText) findViewById(R.id.password_field);
+            input2 = cinput1.getText().toString();
+
+            ParseQuery<ParseObject> query2 = ParseQuery.getQuery("User");
+            query2.whereEqualTo("username", input);
+            query2.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> object, ParseException e) {
+
+                    System.out.println("You are inside 1");
+                    if (e == null) {
+                        System.out.println("size: " +object.size());
+
+                        for (int i = 0; i < object.size(); i++) {
+                            String compareTo = object.get(i).getString("password");
+                            System.out.println(compareTo);
+                            Number Number1 = object.get(i).getNumber("accountType");
+
+                            System.out.println(Number1);
+                        }
+                        //cinput2 = (EditText)findViewById(R.id.where_field);
+                        //input2 = cinput2.getText().toString();
+                        //result = (TextView)findViewById(R.id.result_textview);
+                        //result.setText(Double.toString(fout));
+
+                        //Intent i = new Intent(this, SearchResults.class);
+                        //Bundle extraInfo = new Bundle();
+                        //extraInfo.putDouble("feet", number);
+                        //extraInfo.putString("result2", input2);
+                        //i.putExtras(extraInfo);
+
+
+                        //startActivity(i);
+                    } else {
+
+                    }
+                }
+            });
         /*else if(v.getId() == R.id.done_button)
         {
             Intent i = new Intent(this, CtoFActivity.class);
             startActivity(i);
             //startActivity(new Intent(this, About.class));
         }*/
+        }
     }
 }

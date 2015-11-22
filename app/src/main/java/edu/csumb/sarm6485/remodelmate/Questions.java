@@ -12,26 +12,45 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
 
 
-public class HomeOwner extends Activity implements OnClickListener {
+public class Questions extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.homeowner);
+        setContentView(R.layout.questions);
 
 
-        View SearchButton = findViewById(R.id.search_button);
+        View SearchButton = findViewById(R.id.submit_search);
         SearchButton.setOnClickListener(this);
 
-        View advSearchButton = findViewById(R.id.advSearch_button);
-        advSearchButton.setOnClickListener(this);
+        Spinner spinner = (Spinner) findViewById(R.id.project_type);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.project, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.warranty);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.warranty_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner2.setAdapter(adapter2);
+
+
     }
 
 
@@ -64,21 +83,23 @@ public class HomeOwner extends Activity implements OnClickListener {
         String input2;
         TextView result;
 
-        if(v.getId() == R.id.search_button)
+        if(v.getId() == R.id.submit_search)
         {
 
-            cinput1 = (EditText)findViewById(R.id.what_field);
-            input = cinput1.getText().toString();
 
-            cinput2 = (EditText)findViewById(R.id.where_field);
-            input2 = cinput2.getText().toString();
+            cinput1 = (EditText)findViewById(R.id.feet);
+            input = cinput1.getText().toString();
+            double number = Double.parseDouble(input);
+
+            //cinput2 = (EditText)findViewById(R.id.where_field);
+            //input2 = cinput2.getText().toString();
             //result = (TextView)findViewById(R.id.result_textview);
             //result.setText(Double.toString(fout));
 
-            Intent i = new Intent(this, SearchResultsBroad.class);
+            Intent i = new Intent(this, SearchResults.class);
             Bundle extraInfo = new Bundle();
-            extraInfo.putString("result", input);
-            extraInfo.putString("result2", input2);
+            extraInfo.putDouble("feet", number);
+            //extraInfo.putString("result2", input2);
             i.putExtras(extraInfo);
 
 
@@ -88,12 +109,12 @@ public class HomeOwner extends Activity implements OnClickListener {
         }
 
 
-       else if(v.getId() == R.id.advSearch_button)
+        /*else if(v.getId() == R.id.advSearch_button)
         {
             Intent i = new Intent(this, Questions.class);
             startActivity(i);
             //startActivity(new Intent(this, About.class));
-        }
+        }*/
     }
 }
 
