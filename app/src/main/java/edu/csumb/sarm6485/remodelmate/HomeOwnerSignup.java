@@ -23,8 +23,8 @@ public class HomeOwnerSignup extends Activity implements OnClickListener {
         setContentView(R.layout.homeowner_signup);
         // Set up a click listener for the Calculate button.
 
-        //View homeOwner = findViewById(R.id.is_a_homeowner);
-        //.setOnClickListener(this);
+        View submitButton = findViewById(R.id.customer_submit);
+        submitButton.setOnClickListener(this);
 
 
         /*ParseObject testObject = new ParseObject("TestObject");
@@ -61,13 +61,13 @@ public class HomeOwnerSignup extends Activity implements OnClickListener {
     public void onClick(View v) {
 
 
-        /*if(v.getId() == R.id.is_a_homeowner)
+        if(v.getId() == R.id.customer_submit)
         {
 
             Intent i = new Intent(this, Login.class);
             startActivity(i);
         }
-        else if(v.getId() == R.id.is_a_contractor)
+       /* else if(v.getId() == R.id.is_a_contractor)
         {
 
             Intent i = new Intent(this, Login.class);

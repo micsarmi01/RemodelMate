@@ -26,7 +26,7 @@ public class TypeOfAccount extends Activity implements OnClickListener {
         View homeOwner = findViewById(R.id.is_a_homeowner);
         homeOwner.setOnClickListener(this);
 
-        View contractor = findViewById(R.id.is_a_contractor);
+       View contractor = findViewById(R.id.is_a_contractor);
         contractor.setOnClickListener(this);
 
         /*ParseObject testObject = new ParseObject("TestObject");

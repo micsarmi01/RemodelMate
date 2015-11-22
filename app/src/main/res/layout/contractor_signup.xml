@@ -93,7 +93,7 @@
 
 
     <Button
-        android:id="@+id/company_submit"
+        android:id="@+id/contractor_submit"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
