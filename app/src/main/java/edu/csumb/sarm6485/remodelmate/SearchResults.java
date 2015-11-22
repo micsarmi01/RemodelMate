@@ -47,9 +47,8 @@ public class SearchResults extends Activity implements OnClickListener {
 
         Parse.initialize(this, "0aPN93EAFKwJGX9uAeQRD4edwfuA4ml7LIhgLFuV", "yn2tKwCYp1nitqnqndWz3J8tafANcf9C0DAYUTZp");
 
-
-        //View LoginButton = findViewById(R.id.login_button);
-        //LoginButton.setOnClickListener(this);
+        View LoginButton = findViewById(R.id.pricing);
+        LoginButton.setOnClickListener(this);
 
 
 
@@ -87,6 +86,9 @@ public class SearchResults extends Activity implements OnClickListener {
 
                     int name = object.size();
                     result.setText(Integer.toString(name));*/
+
+                    //ExternalOnClickListener listnerExternal = new ExternalOnClickListener();
+
 
 
                     for(int i = 0; i < object.size() ; i++){
@@ -156,25 +158,27 @@ public class SearchResults extends Activity implements OnClickListener {
                         NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
 
+                        //textViewNewB.setOnClickListener(new ExternalOnClickListener());
 
 
 
                         textViewNewB.setText(name2);
                         textViewNewCity.setText("City: " + city + " \nPrice: " + formatter.format(totalCostFinal));
-                        Price.setText(formatter.format(totalCostFinal));
+                        Price.setText("\n Claim Voucher");
                         textViewNewB.setTextColor(Color.parseColor("#233151"));
                         textViewNewB.setTextSize(20);
                         textViewNewCity.setTextColor(Color.parseColor("#F7A656"));
-                        Price.setTextColor(Color.parseColor("#F7A656"));
+                        Price.setTextColor(Color.parseColor("#1CC38E"));
 
-                        Price.setGravity(Gravity.RIGHT);
-                        textViewNewCity.setTextSize(20);
-                        textViewNewCity.setTextSize(14);
+
+                        Price.setTextSize(16);
+                        textViewNewCity.setTextSize(18);
                         textViewNewCity.setGravity(Gravity.RIGHT);
 
                         newLinear1.addView(Price);
-
+                        Price.setPadding(0, 0, 0, 0);
                         textViewNewCity.setPadding(40, 5, 5, 5);
+
 
                         //View thisView = textViewNewB.getRootView();
                         //thisView.setBackgroundColor(Color.WHITE);
@@ -184,6 +188,8 @@ public class SearchResults extends Activity implements OnClickListener {
                         newLinear.setBackgroundColor(Color.WHITE);
                         newLinear1.setBackgroundColor(Color.WHITE);
 
+                        newLinear.setClickable(true);
+                        newLinear.setId(R.id.type);
 
                         newLinear1.setGravity(Gravity.RIGHT);
 
@@ -198,7 +204,8 @@ public class SearchResults extends Activity implements OnClickListener {
                         mainLinear.addView(newLinear, layoutParams);
                         mainLinear.addView(newLinear1, layoutParams1);
 
-
+                        View LoginButton = findViewById(R.id.type);
+                        LoginButton.setOnClickListener(new ExternalOnClickListener());
                     }
                 }
                 else {
@@ -207,21 +214,14 @@ public class SearchResults extends Activity implements OnClickListener {
             }
         });
         //Create
-        LinearLayout llPrincipal = (LinearLayout)findViewById(R.id.searchResultsLayout);
-        TextView textViewNew = new TextView(this);
 
-        LinearLayout A = new LinearLayout(this);
-        A.setOrientation(LinearLayout.VERTICAL);
-
-
-        TextView textViewNewA = new TextView(this);
         //textViewNewA.setText("Hi");
 
         //A.addView(textViewNewA);
 
         //llPrincipal.addView(A);
 
-        for(int i=0; i<objects.size();i++){
+       /* for(int i=0; i<objects.size();i++){
             LinearLayout B = new LinearLayout(this);
             B.setOrientation(LinearLayout.VERTICAL);
 
@@ -233,14 +233,12 @@ public class SearchResults extends Activity implements OnClickListener {
             B.addView(textViewNewB);
             B.setBackgroundColor(Color.WHITE);
             llPrincipal.addView(B);
-        }
+        }*/
+
+
 
     }
 
-
-    public void addToArrayList(ArrayList<ParseObject> objects){
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -266,10 +264,11 @@ public class SearchResults extends Activity implements OnClickListener {
     public void onClick(View v) {
 
 
-       /*if(v.getId() == R.id.login_button)
+       if(v.getId() == R.id.pricing)
         {
-
-        }*/
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+        }
 
         /*else if(v.getId() == R.id.done_button)
         {
@@ -296,4 +295,16 @@ public class SearchResults extends Activity implements OnClickListener {
         System.out.println("Total cost = " + totalCost);
         return totalCost;
     }
+}
+
+class ExternalOnClickListener implements View.OnClickListener {
+
+    public ExternalOnClickListener() {
+        // keep references for your onClick logic
+    }
+
+    @Override public void onClick(View v) {
+        // TODO: add code here
+    }
+
 }

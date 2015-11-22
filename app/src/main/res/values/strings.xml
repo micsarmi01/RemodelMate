@@ -28,6 +28,7 @@
 
 
     <string name="Logo_PNG">Logo</string>
+
     <color name="shadowy">#233151</color>
     <color name="transparent">#80000000</color>
 </resources>

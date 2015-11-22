@@ -14,5 +14,17 @@
         android:contentDescription="logo"
         android:id="@+id/smallLogoSearch" />
 
+    <Button
+        android:layout_width="402dp"
+        android:layout_height="wrap_content"
+        android:text="Click to Collect Voucher"
+        android:id="@+id/pricing"
+        android:layout_weight="0.04"
+        android:background="@color/white"
+        android:gravity="left|center_vertical"
+
+        android:layout_gravity="left"
+        android:textColor="#00ff90" />
+
 
 </LinearLayout>
