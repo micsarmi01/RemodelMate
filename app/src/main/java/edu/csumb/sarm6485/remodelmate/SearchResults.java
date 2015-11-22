@@ -28,7 +28,7 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.text.NumberFormat;
 
 public class SearchResults extends Activity implements OnClickListener {
     static ArrayList<ParseObject> objects = new  ArrayList<ParseObject>();
@@ -36,14 +36,12 @@ public class SearchResults extends Activity implements OnClickListener {
     int warrantyType = 2;
     double sqFeetInput = 20;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchresults);
-
-
-
-
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
@@ -78,7 +76,7 @@ public class SearchResults extends Activity implements OnClickListener {
 
 
         ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Contractor");
-        query2.whereEqualTo("state", "MD");
+        query2.whereEqualTo("productTags", "roofing");
         query2.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
@@ -107,8 +105,8 @@ public class SearchResults extends Activity implements OnClickListener {
                         Double laborPer3 = object.get(i).getDouble("laborPer1");
 
                         Double roofingMaterialsPer = object.get(i).getDouble("roofingMaterialsPer");
-
                         Double warrantyCost = 0.0;
+
                         if(warrantyType==0){
                             warrantyCost = 0.0;
                         }
@@ -123,17 +121,17 @@ public class SearchResults extends Activity implements OnClickListener {
                             warrantyCost += warranty3;
                         }
 
-                        Double laborCost=0.0;
 
-                        if(sqFeetInput<20){
-                            laborCost += laborPer1;
+                        Double laborCost = 0.0;
+                        if(sqFeetInput<=20){
+                            laborCost = laborPer1;
                         }
                         else if(sqFeetInput<50 && sqFeetInput>20){
-                            laborCost += laborPer2;
+                            laborCost = laborPer2;
                         }
 
-                        else if(sqFeetInput>50){
-                            laborCost += laborPer3;
+                        else if(sqFeetInput>=50){
+                            laborCost = laborPer3;
                         }
 
                         /*String location2 = object.get(i).getString("Location");
@@ -143,43 +141,63 @@ public class SearchResults extends Activity implements OnClickListener {
                         //objects.add(sourceObject);
                         mainLinear = (LinearLayout)findViewById(R.id.searchResultsLayout);
 
-                        Double totalCostFinal = simpleAlgo(sqFeetInput, warrantyCost, roofingMaterialsPer , laborCost);
+                        Double totalCostFinal = simpleAlgo(sqFeetInput, warrantyCost, roofingMaterialsPer) + laborCost;
 
                         System.out.println("Inside the first loop totalCost: " + totalCostFinal + "For person " + (i+1));
 
                         LinearLayout newLinear = new LinearLayout(getApplicationContext());
 
+                        LinearLayout newLinear1 = new LinearLayout(getApplicationContext());
+
                         TextView textViewNewB = new TextView(getApplicationContext());
                         TextView textViewNewCity = new TextView(getApplicationContext());
-                        TextView textVeiwNewPrice = new TextView(getApplicationContext());
+                        TextView Price = new TextView(getApplicationContext());
+
+                        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+
+
+
+
 
                         textViewNewB.setText(name2);
-                        textViewNewCity.setText("\n\nCity: " + city);
-                        textVeiwNewPrice.setText(Double.toString(totalCostFinal));
+                        textViewNewCity.setText("City: " + city + " \nPrice: " + formatter.format(totalCostFinal));
+                        Price.setText(formatter.format(totalCostFinal));
                         textViewNewB.setTextColor(Color.parseColor("#233151"));
                         textViewNewB.setTextSize(20);
                         textViewNewCity.setTextColor(Color.parseColor("#F7A656"));
-                        textViewNewCity.setTextColor(Color.BLACK);
+                        Price.setTextColor(Color.parseColor("#F7A656"));
+
+                        Price.setGravity(Gravity.RIGHT);
                         textViewNewCity.setTextSize(20);
                         textViewNewCity.setTextSize(14);
                         textViewNewCity.setGravity(Gravity.RIGHT);
 
-                        textViewNewCity.setPadding(10, 10, 10, 10);
+                        newLinear1.addView(Price);
+
+                        textViewNewCity.setPadding(40, 5, 5, 5);
 
                         //View thisView = textViewNewB.getRootView();
                         //thisView.setBackgroundColor(Color.WHITE);
                         newLinear.addView(textViewNewB);
-                        newLinear.addView(textViewNewCity);
-                        newLinear.addView(textVeiwNewPrice);
+                        newLinear1.addView(textViewNewCity);
+                        //newLinear.addView(textVeiwNewPrice);
                         newLinear.setBackgroundColor(Color.WHITE);
+                        newLinear1.setBackgroundColor(Color.WHITE);
 
 
-                        newLinear.setPadding(10, 30, 10, 10);
+                        newLinear1.setGravity(Gravity.RIGHT);
+
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                        layoutParams.setMargins(40, 30, 30, 40);
+
+                        layoutParams.setMargins(0, 0, 0, 0);
+                        layoutParams1.setMargins(0, 0, 0, 30);
                         mainLinear.addView(newLinear, layoutParams);
+                        mainLinear.addView(newLinear1, layoutParams1);
+
 
                     }
                 }
@@ -261,19 +279,20 @@ public class SearchResults extends Activity implements OnClickListener {
         }*/
     }
 
-    public double simpleAlgo(double sqFeet, double warrantyCost, double materialCost, double laborCost){
+    public double simpleAlgo(double sqFeetPass, double warrantyCostPass, double materialCostPass){
 
         double totalCost = 0;
         //take square feet and multiply by materialCost
-        double totalMatCost = sqFeet * materialCost;
+        double totalMatCost = sqFeetPass * materialCostPass;
 
         //add warranty cost
 
 
         //sum
-        totalCost = totalMatCost + warrantyCost + laborCost;
+        totalCost = totalMatCost + warrantyCostPass;
+
         System.out.println("You are inside 2");
-        System.out.println(sqFeet + " warranty: " + warrantyCost  + " materials: " + materialCost + "labor: " +laborCost);
+        System.out.println(sqFeetPass + " warranty: " + warrantyCostPass  + " materials: " + materialCostPass );
         System.out.println("Total cost = " + totalCost);
         return totalCost;
     }
