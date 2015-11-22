@@ -6,6 +6,7 @@ package edu.csumb.sarm6485.remodelmate;
 
 import android.util.Log;
 import android.view.View.OnClickListener;
+import android.graphics.Color;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -75,6 +76,8 @@ public class SearchResults extends Activity implements OnClickListener {
         query2.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> object, ParseException e){
                 TextView result;
+                LinearLayout mainLinear;
+
                 if (e == null) {
                     result = (TextView)findViewById(R.id.result1_textview);
 
@@ -84,13 +87,26 @@ public class SearchResults extends Activity implements OnClickListener {
 
                     for(int i = 0; i < object.size() ; i++){
                         sourceObject = object.get(i);
-
-                        objects.add(sourceObject);
-
+                        //Testing
                         String name2 = object.get(i).getString("name");
                         String location2 = object.get(i).getString("Location");
                         String contactName2  = object.get(i).getString("contactName");
                         result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");
+
+                        //objects.add(sourceObject);
+                        mainLinear = (LinearLayout)findViewById(R.id.searchResultsLayout);
+
+                        LinearLayout newLinear = new LinearLayout(getApplicationContext());
+                        TextView textViewNewB = new TextView(getApplicationContext());
+                        textViewNewB.setText(name2);
+                        textViewNewB.setTextColor(Color.BLACK);
+                        //View thisView = textViewNewB.getRootView();
+                        //thisView.setBackgroundColor(Color.WHITE);
+                        newLinear.addView(textViewNewB);
+                        newLinear.setBackgroundColor(Color.WHITE);
+                        mainLinear.addView(newLinear);
+
+
 
                     }
                 }
@@ -108,11 +124,11 @@ public class SearchResults extends Activity implements OnClickListener {
 
 
         TextView textViewNewA = new TextView(this);
-        textViewNewA.setText("Hi");
+        //textViewNewA.setText("Hi");
 
-        A.addView(textViewNewA);
+        //A.addView(textViewNewA);
 
-        llPrincipal.addView(A);
+        //llPrincipal.addView(A);
 
         for(int i=0; i<objects.size();i++){
             LinearLayout B = new LinearLayout(this);
@@ -121,10 +137,11 @@ public class SearchResults extends Activity implements OnClickListener {
 
             TextView textViewNewB = new TextView(this);
             textViewNewB.setText(objects.get(i).getString("contactName"));
-
+            View thisView = textViewNewB.getRootView();
+            thisView.setBackgroundColor(Color.WHITE);
             B.addView(textViewNewB);
-
-            llPrincipal .addView(B);
+            B.setBackgroundColor(Color.WHITE);
+            llPrincipal.addView(B);
         }
 
     }
