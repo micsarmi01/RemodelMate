@@ -5,6 +5,7 @@ package edu.csumb.sarm6485.remodelmate;
  */
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View.OnClickListener;
 import android.graphics.Color;
 
@@ -89,6 +90,7 @@ public class SearchResults extends Activity implements OnClickListener {
                         sourceObject = object.get(i);
                         //Testing
                         String name2 = object.get(i).getString("name");
+                        String city = object.get(i).getString("city");
                         /*String location2 = object.get(i).getString("Location");
                         String contactName2  = object.get(i).getString("contactName");
                         result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");*/
@@ -98,14 +100,21 @@ public class SearchResults extends Activity implements OnClickListener {
 
                         LinearLayout newLinear = new LinearLayout(getApplicationContext());
                         TextView textViewNewB = new TextView(getApplicationContext());
+                        TextView textViewNewCity = new TextView(getApplicationContext());
                         textViewNewB.setText(name2);
+                        textViewNewCity.setText("\n\nCity: " + city);
                         textViewNewB.setTextColor(Color.parseColor("#233151"));
                         textViewNewB.setTextSize(20);
+                        textViewNewCity.setTextColor(Color.parseColor("#F7A656"));
+                        textViewNewCity.setTextSize(14);
+                        textViewNewCity.setGravity(Gravity.RIGHT);
 
+                        textViewNewCity.setPadding(10, 10, 10, 10);
 
                         //View thisView = textViewNewB.getRootView();
                         //thisView.setBackgroundColor(Color.WHITE);
                         newLinear.addView(textViewNewB);
+                        newLinear.addView(textViewNewCity);
                         newLinear.setBackgroundColor(Color.WHITE);
 
 
