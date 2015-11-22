@@ -93,27 +93,44 @@ public class Login extends Activity implements OnClickListener {
                     System.out.println("You are inside 1");
                     if (e == null) {
                         System.out.println("size: " + object.size());
+                        if (object.size() == 0) {
+                            Intent B = new Intent(getApplicationContext(), errorLogin.class);
+
+
+                            Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username or password did not match", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 50);
+                            toast.show();
+
+                            startActivity(B);
+                        }
 
                         for (int i = 0; i < object.size(); i++) {
                             String compareTo = object.get(i).getString("password");
                             System.out.println(compareTo);
-                            int accountType = object.get(i).getInt("accountType");
+                            int accountType = object.get(i).getInt("account");
+
+                            System.out.println("acc:" + accountType);
 
                             if (compareTo.equals(input2)) {
-                                Intent A = new Intent(getApplicationContext(), HomeOwner.class);
-                                startActivity(A);
+                                if (accountType == 1) {
+                                    Intent A = new Intent(getApplicationContext(), HomeOwner.class);
+                                    startActivity(A);
+                                }
+                                else if (accountType == 2) {
+                                    Intent C = new Intent(getApplicationContext(), Contractor.class);
+                                    startActivity(C);
+                                }
                             } else {
 
 
-                                Intent A = new Intent(getApplicationContext(), Login.class);
-                                startActivity(A);
+                                Intent B = new Intent(getApplicationContext(), errorLogin.class);
 
 
                                 Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username or password did not match", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 50);
                                 toast.show();
 
-
+                                startActivity(B);
 
                             }
 

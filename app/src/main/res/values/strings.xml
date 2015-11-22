@@ -47,4 +47,6 @@
         <item>50 year warranty</item>
     </string-array>
 
+    <string name="contractor_description">name</string>
+
 </resources>

@@ -93,6 +93,16 @@ public class errorLogin extends Activity implements OnClickListener {
                     System.out.println("You are inside 1");
                     if (e == null) {
                         System.out.println("size: " + object.size());
+                        if (object.size() == 0) {
+                            Intent B = new Intent(getApplicationContext(), errorLogin.class);
+
+
+                            Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username or password did not match", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 50);
+                            toast.show();
+
+                            startActivity(B);
+                        }
 
                         for (int i = 0; i < object.size(); i++) {
                             String compareTo = object.get(i).getString("password");
@@ -105,8 +115,8 @@ public class errorLogin extends Activity implements OnClickListener {
                             } else {
 
 
-                                Intent A = new Intent(getApplicationContext(), Login.class);
-                                startActivity(A);
+                                Intent B = new Intent(getApplicationContext(), Login.class);
+                                startActivity(B);
 
 
                                 Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username or password did not match", Toast.LENGTH_LONG);

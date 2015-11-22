@@ -121,6 +121,27 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".errorLogin"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">"
+            <intent-filter>
+                <action android:name="edu.csumb.sarm6485.remodelmate.errorLogin" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Contractor"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">"
+            <intent-filter>
+                <action android:name="edu.csumb.sarm6485.remodelmate.Contractor" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.parse.ui.ParseLoginActivity"
         android:label="@string/app_name"
         android:launchMode="singleTop">

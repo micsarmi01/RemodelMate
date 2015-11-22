@@ -23,8 +23,7 @@ public class Contractor extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contractor);
 
-        View LoginButton = findViewById(R.id.login_button);
-        LoginButton.setOnClickListener(this);
+
 
     }
 
@@ -54,7 +53,7 @@ public class Contractor extends Activity implements OnClickListener {
     public void onClick(View v) {
 
 
-        if(v.getId() == R.id.login_button)
+        /*if(v.getId() == R.id.login_button)
         {
 
 
