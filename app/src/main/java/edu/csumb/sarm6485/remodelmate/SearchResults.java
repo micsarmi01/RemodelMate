@@ -79,19 +79,19 @@ public class SearchResults extends Activity implements OnClickListener {
                 LinearLayout mainLinear;
 
                 if (e == null) {
-                    result = (TextView)findViewById(R.id.result1_textview);
+                    /*result = (TextView)findViewById(R.id.result1_textview);
 
                     int name = object.size();
-                    result.setText(Integer.toString(name));
+                    result.setText(Integer.toString(name));*/
 
 
                     for(int i = 0; i < object.size() ; i++){
                         sourceObject = object.get(i);
                         //Testing
                         String name2 = object.get(i).getString("name");
-                        String location2 = object.get(i).getString("Location");
+                        /*String location2 = object.get(i).getString("Location");
                         String contactName2  = object.get(i).getString("contactName");
-                        result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");
+                        result.append("\n | " + name2 + " | " + location2 + " | " + contactName2 + " | ");*/
 
                         //objects.add(sourceObject);
                         mainLinear = (LinearLayout)findViewById(R.id.searchResultsLayout);
@@ -99,12 +99,22 @@ public class SearchResults extends Activity implements OnClickListener {
                         LinearLayout newLinear = new LinearLayout(getApplicationContext());
                         TextView textViewNewB = new TextView(getApplicationContext());
                         textViewNewB.setText(name2);
-                        textViewNewB.setTextColor(Color.BLACK);
+                        textViewNewB.setTextColor(Color.parseColor("#233151"));
+                        textViewNewB.setTextSize(20);
+
+
                         //View thisView = textViewNewB.getRootView();
                         //thisView.setBackgroundColor(Color.WHITE);
                         newLinear.addView(textViewNewB);
                         newLinear.setBackgroundColor(Color.WHITE);
-                        mainLinear.addView(newLinear);
+
+
+                        newLinear.setPadding(10, 30, 10, 10);
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                        layoutParams.setMargins(40, 30, 30, 40);
+                        mainLinear.addView(newLinear, layoutParams);
 
 
 
