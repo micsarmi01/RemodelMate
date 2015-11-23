@@ -37,9 +37,9 @@
         android:layout_height="wrap_content" android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:weightSum="1"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center_vertical|bottom"
         android:layout_alignParentBottom="true"
-        >
+        android:gravity="center">
         <Button
             android:id="@+id/login_button"
             android:layout_width="140dp"

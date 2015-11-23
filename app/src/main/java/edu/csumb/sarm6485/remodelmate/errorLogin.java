@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,6 +55,10 @@ public class errorLogin extends Activity implements OnClickListener {
                 mp.setLooping(true);
             }
         });
+
+        View wholeThing = findViewById(R.id.errorlogin_layout);
+       wholeThing.setOnClickListener(this);
+
     }
 
 
@@ -62,6 +67,36 @@ public class errorLogin extends Activity implements OnClickListener {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_landing, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
     }
 
     @Override
@@ -89,7 +124,7 @@ public class errorLogin extends Activity implements OnClickListener {
             cinput1 = (EditText) findViewById(R.id.username_field);
             input = cinput1.getText().toString();
             cinput2 = (EditText) findViewById(R.id.password_field);
-            input2 = cinput1.getText().toString();
+            input2 = cinput2.getText().toString();
 
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Users");
             query2.whereEqualTo("username", input);
@@ -114,11 +149,17 @@ public class errorLogin extends Activity implements OnClickListener {
                         for (int i = 0; i < object.size(); i++) {
                             String compareTo = object.get(i).getString("password");
                             System.out.println(compareTo);
-                            int accountType = object.get(i).getInt("accountType");
+                            int accountType = object.get(i).getInt("account");
 
                             if (compareTo.equals(input2)) {
-                                Intent A = new Intent(getApplicationContext(), HomeOwner.class);
-                                startActivity(A);
+                                if (accountType == 1) {
+                                    Intent A = new Intent(getApplicationContext(), HomeOwner.class);
+                                    startActivity(A);
+                                }
+                                else if (accountType == 2) {
+                                    Intent C = new Intent(getApplicationContext(), Contractor.class);
+                                    startActivity(C);
+                                }
                             } else {
 
 
@@ -159,6 +200,13 @@ public class errorLogin extends Activity implements OnClickListener {
             startActivity(i);
             //startActivity(new Intent(this, About.class));
         }*/
+        }
+        else if(v.getId() == R.id.errorlogin_layout){
+
+            View thisView = findViewById(R.id.errorlogin_layout);
+
+            InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(thisView.getWindowToken(), 0);
         }
     }
 }

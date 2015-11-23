@@ -5,6 +5,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/shadowy"
+    android:id="@+id/homeOwner_signup_view"
     >
 
     <ImageView
@@ -20,9 +21,25 @@
         android:id="@+id/customer_name"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_margin="15dp"
-        android:paddingLeft="20dp"
-        android:hint="your full name"
+        android:paddingLeft="15dp"
+        android:hint="first name"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:lines="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/email2"
+        android:textColor="@color/white"
+
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:id="@+id/customer_lastname"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:hint="last name"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:lines="1"
@@ -32,9 +49,24 @@
 
         />
 
-
     <EditText
         android:id="@+id/customer_email"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:hint="email"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:lines="1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/email2"
+        android:textColor="@color/white"
+
+        />
+
+    <EditText
+        android:id="@+id/username"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_margin="5dp"
@@ -48,6 +80,8 @@
         android:textColor="@color/white"
 
         />
+
+
 
     <EditText
         android:id="@+id/customer_password"

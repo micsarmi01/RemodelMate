@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
@@ -33,8 +34,8 @@ public class HomeOwnerSignup extends Activity implements OnClickListener {
         testObject.put("foo", "barf");
         testObject.saveInBackground();*/
 
-
-
+        View signupLayout = findViewById(R.id.homeOwner_signup_view);
+        signupLayout.setOnClickListener(this);
 
     }
 
@@ -92,11 +93,13 @@ public class HomeOwnerSignup extends Activity implements OnClickListener {
             Intent i = new Intent(this, Login.class);
             startActivity(i);
         }
-       /* else if(v.getId() == R.id.is_a_contractor)
+       else if(v.getId() == R.id.homeOwner_signup_view)
         {
 
-            Intent i = new Intent(this, Login.class);
-            startActivity(i);
+            View thisView = findViewById(R.id.homeOwner_signup_view);
+
+            InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(thisView.getWindowToken(), 0);
         }
         /*else if(v.getId() == R.id.done_button)
         {

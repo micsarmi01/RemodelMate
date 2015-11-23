@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,10 +33,12 @@ import java.util.List;
 
 public class Login extends Activity implements OnClickListener {
 
-    String input;
+    String input1;
     String input2;
     EditText cinput1;
     EditText cinput2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,10 @@ public class Login extends Activity implements OnClickListener {
 
         View LoginButton = findViewById(R.id.login_button);
         LoginButton.setOnClickListener(this);
+
+        View layoutView = findViewById(R.id.layoutLinearLogin);
+        layoutView.setOnClickListener(this);
+
 
         VideoView videoView = (VideoView) findViewById(R.id.videoView);
         videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
@@ -63,6 +70,36 @@ public class Login extends Activity implements OnClickListener {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_landing, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
     }
 
     @Override
@@ -88,12 +125,12 @@ public class Login extends Activity implements OnClickListener {
 
 
             cinput1 = (EditText) findViewById(R.id.username_field);
-            input = cinput1.getText().toString();
+            input1 = cinput1.getText().toString();
             cinput2 = (EditText) findViewById(R.id.password_field);
-            input2 = cinput1.getText().toString();
+            input2 = cinput2.getText().toString();
 
             ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Users");
-            query2.whereEqualTo("username", input);
+            query2.whereEqualTo("username", input1);
             query2.findInBackground(new FindCallback<ParseObject>() {
                 public void done(List<ParseObject> object, ParseException e) {
 
@@ -105,7 +142,7 @@ public class Login extends Activity implements OnClickListener {
                             Intent B = new Intent(getApplicationContext(), errorLogin.class);
 
 
-                            Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username or password did not match", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username does not exist.", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 50);
                             toast.show();
 
@@ -118,8 +155,10 @@ public class Login extends Activity implements OnClickListener {
                             int accountType = object.get(i).getInt("account");
 
                             System.out.println("acc:" + accountType);
+                            System.out.println("password: " + compareTo);
+                            System.out.println("equals: " + compareTo.equals(input2));
 
-                            if (compareTo.equals(input2)) {
+                            if(compareTo.equals(input2)) {
                                 if (accountType == 1) {
                                     Intent A = new Intent(getApplicationContext(), HomeOwner.class);
                                     startActivity(A);
@@ -128,13 +167,13 @@ public class Login extends Activity implements OnClickListener {
                                     Intent C = new Intent(getApplicationContext(), Contractor.class);
                                     startActivity(C);
                                 }
-                            } else {
+                            } else if(!(compareTo.equals(input2))) {
 
 
                                 Intent B = new Intent(getApplicationContext(), errorLogin.class);
 
 
-                                Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your username or password did not match", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(), "Please Try Again.\n Your password did not match", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 50);
                                 toast.show();
 
@@ -161,12 +200,14 @@ public class Login extends Activity implements OnClickListener {
                     }
                 }
             });
-        /*else if(v.getId() == R.id.done_button)
-        {
-            Intent i = new Intent(this, CtoFActivity.class);
-            startActivity(i);
-            //startActivity(new Intent(this, About.class));
-        }*/
+        }
+
+        else if(v.getId() == R.id.layoutLinearLogin){
+
+            View thisView = findViewById(R.id.layoutLinearLogin);
+
+            InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(thisView.getWindowToken(), 0);
         }
     }
 }

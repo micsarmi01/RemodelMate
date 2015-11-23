@@ -56,6 +56,36 @@ public class Landing extends Activity implements OnClickListener {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
