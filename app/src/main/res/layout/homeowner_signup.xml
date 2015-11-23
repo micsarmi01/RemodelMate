@@ -39,7 +39,7 @@
         android:layout_height="50dp"
         android:layout_margin="5dp"
         android:paddingLeft="15dp"
-        android:hint="email"
+        android:hint="username"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:lines="1"
@@ -62,6 +62,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/email2"
         android:textColor="@color/white"
+        android:inputType="textPassword"
         />
 
 

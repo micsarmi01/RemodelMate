@@ -4,6 +4,7 @@ package edu.csumb.sarm6485.remodelmate;
  * Created by michaelsarmiento on 11/20/15.
  */
 
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View.OnClickListener;
@@ -46,6 +47,13 @@ public class Login extends Activity implements OnClickListener {
         VideoView videoView = (VideoView) findViewById(R.id.videoView);
         videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.video);
         videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
 
     }
 

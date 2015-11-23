@@ -3,6 +3,7 @@ package edu.csumb.sarm6485.remodelmate;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.parse.Parse;
@@ -30,6 +32,7 @@ public class HomeOwnerSignup extends Activity implements OnClickListener {
         /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "barf");
         testObject.saveInBackground();*/
+
 
 
 
@@ -63,6 +66,28 @@ public class HomeOwnerSignup extends Activity implements OnClickListener {
 
         if(v.getId() == R.id.customer_submit)
         {
+
+
+            EditText cinput1;
+            EditText cinput2;
+
+            String input;
+            String input2;
+
+            cinput1 = (EditText)findViewById(R.id.customer_password);
+            input = cinput1.getText().toString();
+
+            cinput2 = (EditText)findViewById(R.id.customer_email);
+            input2 = cinput2.getText().toString();
+
+            ParseObject gameScore = new ParseObject("Users");
+        gameScore.put("username", input2);
+        gameScore.put("password", input );
+        gameScore.put("account", 1);
+        gameScore.saveInBackground();
+            Toast toast = Toast.makeText(getApplicationContext(), "Congrats! Welcome to our small community!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 50);
+            toast.show();
 
             Intent i = new Intent(this, Login.class);
             startActivity(i);
